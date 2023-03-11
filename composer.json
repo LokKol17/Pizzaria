@@ -1,0 +1,23 @@
+{
+    "name": "lokkol17/pizzaria",
+    "description": "Um site de pizzaria.",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "lokkol17",
+            "email": "lokkol17@proton.me"
+        },
+        {
+            "name": "Mr.Duck"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Pizzaria\\App": "app/"
+        }
+    },
+    "scripts": {
+        "start": "php -S localhost:8000 -t public"
+    }
+}
