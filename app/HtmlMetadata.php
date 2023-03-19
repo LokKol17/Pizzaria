@@ -3,12 +3,13 @@
 namespace Pizzaria\App;
 
 use DOMDocument;
-use DOMException;
 
 class HtmlMetadata
 {
     private DOMDocument $html;
     private string $routeName;
+
+    const ASSETS_PATH = __DIR__ . '/../public/assets/';
 
     public function __construct(string $html, string $routeName)
     {
@@ -19,9 +20,6 @@ class HtmlMetadata
         $this->routeName = $routeName;
     }
 
-    /**
-     * @throws DOMException
-     */
     public function renderCss(): DOMDocument
     {
         $head = $this->html->getElementsByTagName('head')->item(0);
@@ -31,24 +29,28 @@ class HtmlMetadata
             return $this->html;
         }
 
+        $this->putCssFilesInHead($cssFiles, $head);
+        return $this->html;
+    }
+
+    private function putCssFilesInHead(array $cssFiles, &$head): void
+    {
         foreach ($cssFiles as $cssFile) {
             $link = $this->html->createElement('link');
             $link->setAttribute('rel', 'stylesheet');
             $link->setAttribute('href', $this->pathToCssAssets() . $cssFile);
             $head->appendChild($link);
         }
-
-        return $this->html;
     }
 
     private function pathToCssAssets(bool $fromActualDirectory = false): string
     {
-        if (is_dir(__DIR__ . "/../public/assets/$this->routeName/css/") === false) {
+        if (is_dir(self::ASSETS_PATH . "$this->routeName/css/") === false) {
             $this->routeName = 'errorPage';
         }
 
         if ($fromActualDirectory) {
-            return __DIR__ . "/../public/assets/$this->routeName/css/";
+            return self::ASSETS_PATH . "$this->routeName/css/";
         }
         return "/assets/$this->routeName/css/";
     }
