@@ -14,10 +14,14 @@
     ],
     "autoload": {
         "psr-4": {
-            "Pizzaria\\App": "app/"
+            "Pizzaria\\App\\": "app/"
         }
     },
     "scripts": {
         "start": "php -S localhost:8000 -t public"
-    }
+    },
+  "require": {
+    "ext-dom": "*",
+    "ext-libxml": "*"
+  }
 }
