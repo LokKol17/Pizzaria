@@ -3,7 +3,6 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use Pizzaria\App\HtmlMetadata;
-use Pizzaria\App\RenderHtml;
 use Pizzaria\App\Router;
 
 $uri = substr($_SERVER['REQUEST_URI'], 1);
