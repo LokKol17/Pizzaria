@@ -15,7 +15,7 @@ abstract class RouteSwitch
         return $this->pathToView('errorPage');
     }
 
-    private function pathToView($view): string
+    public function pathToView($view): string
     {
         return __DIR__ . '/../view/' . $view . '/index.html';
     }
